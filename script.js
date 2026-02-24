@@ -84,3 +84,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("scroll", reveal);
 });
+
+const counters = document.querySelectorAll('.counter');
+
+counters.forEach(counter => {
+  const updateCount = () => {
+    const target = +counter.getAttribute('data-target');
+    const count = +counter.innerText;
+    const speed = 50;
+    const increment = target / speed;
+
+    if(count < target) {
+      counter.innerText = Math.ceil(count + increment);
+      setTimeout(updateCount, 30);
+    } else {
+      counter.innerText = target + "+";
+    }
+  };
+
+  updateCount();
+});
